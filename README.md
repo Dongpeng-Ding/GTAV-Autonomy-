@@ -10,38 +10,41 @@ The program is unfinished. More algorithms will be added, current algorithms wil
 
 ## Dependencies & environment
 
-GTAV
-Script Hook V
-DeeperGTAV Build (modified, see below)
-Python 3.6 with: Numpy, Scipy, Opencv, Autograd, Pyflow, and Vpilot
-Visual Studio (optional, to modify DeeperGTAV)
+* GTAV
+* Script Hook V
+* DeeperGTAV Build (modified! see below)
+* Vpilot
+* Python 3.6 with: Numpy, Scipy, Opencv, Autograd, Pyflow, and Vpilot
+* Visual Studio (optional, to modify DeeperGTAV)
 
-Modification on DeeperGTAV:
+Modification to DeeperGTAV:
 
-Lidar setup code is changed to: Lidar sample starts exactly from upper limit to lower limit, from right limit to left limit. Angle bewteen each pair of sample is FOV/(resolution - 1). Only even horizontal resolution supported currently. 
-Native API used for speed signal is changed, so the speed while driving backwards is negative.
-Add changable time scale.
+* Lidar setup code is changed to: Lidar sample starts exactly from upper limit to lower limit, from right limit to left limit. Angle bewteen each pair of sample is FOV/(resolution - 1). Only even horizontal resolution supported currently. 
+* Native API used for speed signal is changed, so the speed while driving backwards is negative.
+* Add changable time scale.
 
 ## Installation 
 
-Put Script Hook V and DeeperGTAV Build in GTAV's main folder.
+Download Script Hook V, put it and all files in folder "DeeperGTAV modified build" into GTAV's main folder.
 Put all Python files in Vpilot's folder. (not in that'/deepgtav')
 
 ## Brief explanation: How it works
 
-dirve.py: setup the simulation environment in GTAV and run the pipeline.
+(Detailed explanation see Technical detail.md)
 
-Class Ground_esti: estimate the driveable area only based on geometry by using Lidar samples, calculate the pitch and roll of the vehicle relate to the road.
+* dirve.py: setup the simulation environment in GTAV and run the pipeline.
 
-Class Opt_flow: estimate the optical flow between image t and t+1. Magnitude and direction asigned to t+1.
+* Class Ground_esti: estimate the driveable area only based on geometry by using Lidar samples, calculate the pitch and roll of the vehicle relate to the road.
 
-Class Movement_checker: use optical flow, lidar samples and self movement of the vehicle to distinguish satationary objects and moving objects. Also calculate the speed of moving objects
+* Class Opt_flow: estimate the optical flow between image t and t+1. Magnitude and direction asigned to t+1.
 
-Class Lane_finder: detect lane lines and estimate lanes
+* Class Movement_checker: use optical flow, lidar samples and self movement of the vehicle to distinguish satationary objects and moving objects. Also calculate the speed of moving objects
 
-Class Lane_controler: a finite state machine to select a lane to drive
+* Class Lane_finder: detect lane lines and estimate lanes
 
-Class Vehicle_controler: a model predictive control to keep the vehicle in lane and avoid collision to other objects.
+* Class Lane_controler: a finite state machine to select a lane to drive
+
+* Class Vehicle_controler: a model predictive control to keep the vehicle in lane and avoid collision to other objects.
 
 ## To do 
 
