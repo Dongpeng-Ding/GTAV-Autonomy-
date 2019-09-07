@@ -4,6 +4,10 @@ This is a self driving program based on the game GTAV and the work DeepGTAV and 
 
 The program is unfinished. More algorithms will be added, current algorithms will be changed in the future.
 
+![monitor1](./img/monitor1.gif)
+
+![monitor2](./img/monitor2.gif)
+
 ## Dependencies & environment
 
 GTAV
